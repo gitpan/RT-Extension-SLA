@@ -4,7 +4,7 @@ use warnings;
 
 package RT::Extension::SLA;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 =head1 NAME
 
@@ -12,27 +12,48 @@ RT::Extension::SLA - Service Level Agreements for RT
 
 =head1 DESCRIPTION
 
-RT's extension that allows you to automate due dates using
-service levels.
+RT extension to implement automated due dates using service levels.
+
+=head1 UPGRADING
+
+On upgrade you shouldn't run 'make initdb'.
+
+If you were using 0.02 or older version of this extension with
+RT 3.8.1 then you have to uninstall that manually. List of files
+you can find in the MANIFEST.
+
+=head1 INSTALL
+
+=over 4
+
+=item perl Makefile.PL
+
+=item make
+
+=item make install
+
+=item make initdb (for the first time only)
+
+=back
 
 =head1 CONFIGURATION
 
-Service level agreements of tickets is controlled by SLA custom
-field. It's created during `make initdb` step and applied globally.
-This CF MUST be of 'select one value' type. Values of the CF
-define service levels.
+Service level agreements of tickets is controlled by an SLA custom field (CF).
+This field is created during C<make initdb> step (above) and applied globally.
+This CF MUST be of C<select one value> type. Values of the CF define the
+service levels.
 
 It's possible to define different set of levels for different
 queues. You can create several CFs with the same name and
 different set of values. But if you move tickets between
-queues a lot then it's gonna be a problem and it's preferred
-to use ONE SLA custom field.
+queues a lot then it's going to be a problem and it's preferred
+to use B<ONE> SLA custom field.
 
 There is no WebUI in the current version. Almost everything is
 controlled in the RT's config using option C<%RT::ServiceAgreements>
 and C<%RT::ServiceBusinessHours>. For example:
 
-    %RT::ServiceAgreements = (
+    Set( %ServiceAgreements,
         Default => '4h',
         QueueDefault => {
             'Incident' => '2h',
@@ -43,25 +64,29 @@ and C<%RT::ServiceBusinessHours>. For example:
         },
     );
 
+In this example I<Incident> is the name of the queue, and I<2h> is the name of
+the SLA which will be applied to this queue by default.
+
 Each service level can be described using several options:
 L<StartImmediately|/"StartImmediately (boolean, false)">,
 L<Resolve|/"Resolve and Response (interval, no defaults)">,
 L<Response|/"Resolve and Response (interval, no defaults)">,
+L<KeepInLoop|/"Keep in loop (interval, no defaults)">,
 L<OutOfHours|/"OutOfHours (struct, no default)">
 and L<ServiceBusinessHours|/"Configuring business hours">.
 
 =head2 StartImmediately (boolean, false)
 
-By default when ticket is created Starts date is set to
+By default when a ticket is created Starts date is set to
 first business minute after time of creation. In other
-words if ticket is created during business hours then
-Starts will be equal to Created time, otherwise it'll
+words if a ticket is created during business hours then
+Starts will be equal to Created time, otherwise Starts will
 be beginning of the next business day.
 
 However, if you provide 24/7 support then you most
 probably would be interested in Starts to be always equal
 to Created time. In this case you can set option
-StartImmediately to true value.
+StartImmediately to a true value.
 
 Example:
 
@@ -143,7 +168,7 @@ Resolve and Response can be combined. In such case due date is set
 according to the earliest of two deadlines and never is dropped to
 'not set'.
 
-If a ticket met its Resolve deadline then due date stops "fliping",
+If a ticket met its Resolve deadline then due date stops "flipping",
 is freezed and the ticket becomes overdue. Before that moment when
 non-requestor replies to a ticket, due date is changed to Resolve
 deadline instead of 'Not Set', as well this happens when a ticket
@@ -185,6 +210,23 @@ level set deadline to 8 real hours starting from the next business
 day, when tickets with the second level should be resolved in the
 next 8 hours after creation.
 
+=head2 Keep in loop (interval, no defaults)
+
+If response deadline is used then Due date is changed to repsonse
+deadline or to "Not Set" when staff replies to a ticket. In some
+cases you want to keep requestors in loop and keed them up to date
+every few hours. KeepInLoop option can be used to achieve this.
+
+    'incident' => {
+        Response   => { RealMinutes => 60*1  }, # one hour
+        KeepInLoop => { RealMinutes => 60*2 }, # two hours
+        Resolve    => { RealMinutes => 60*24 }, # 24 real hours
+    },
+
+In the above example Due is set to one hour after creation, reply
+of a non-requestor moves Due date two hours forward, requestors'
+replies move Due date to one hour and resolve deadine is 24 hours.
+
 =head2 OutOfHours (struct, no default)
 
 Out of hours modifier. Adds more real or business minutes to resolve
@@ -214,7 +256,7 @@ of requests that came into the system during the last night.
 In the config you can set one or more work schedules. Use the following
 format:
 
-    %RT::ServiceBusinessHours = (
+    Set( %ServiceBusinessHours,
         'Default' => {
             ... description ...
         },
@@ -240,7 +282,7 @@ hours.
 
 then %RT::ServiceBusinessHours should have the corresponding definition:
 
-    %RT::ServiceBusinessHours = (
+    Set( %ServiceBusinessHours,
         'work just in Monday' => {
             1 => { Name => 'Monday', Start => '9:00', End => '18:00' },
         },
@@ -252,14 +294,14 @@ Default Business Hours setting is in $RT::ServiceBusinessHours{'Default'}.
 
 In the config you can set per queue defaults, using:
 
-    %RT::ServiceAgreements = (
+    Set( %ServiceAgreements,
         Default => 'global default level of service',
         QueueDefault => {
             'queue name' => 'default value for this queue',
             ...
         },
         ...
-    };
+    );
 
 =head2 Access control
 
@@ -395,19 +437,15 @@ sub GetDefaultServiceLevel {
 
 =head1 TODO
 
-    * default SLA for queues
-    ** implemented
-    ** TODO: tests for options in the config
+    * [implemented, TODO: tests for options in the config] default SLA for queues
 
-    * add support for multiple b-hours definitions, this could be very helpfull
-      when you have 24/7 mixed with 8/5 and/or something like 8/5+4/2 for different
-      tickets(by requestor, queue or something else). So people would be able to
-      handle tickets in the right order using Due dates.
-    ** implemented
-    ** TODO: tests
+    * [implemented, TODO: tests] add support for multiple b-hours definitions,
+      this could be very helpfull when you have 24/7 mixed with 8/5 and/or
+      something like 8/5+4/2 for different tickets(by requestor, queue or
+      something else). So people would be able to handle tickets in the right
+      order using Due dates.
 
-    * WebUI
-    ** not implemented
+    * [not implemented] WebUI
 
 =head1 DESIGN
 
@@ -425,13 +463,19 @@ other things useful for whole extension. As this class is the base for
 all actions and conditions then we MUST avoid adding methods which overload
 methods in 'RT::{Condition,Action}::Generic' RT's modules.
 
+=head1 NOTES
+
+If you run C<make initdb> more than once you will create multiple SLA CFs.  You
+can remove these via RT's C<Configuration-E<gt>Global> menu, (both Custom Fields
+and Scrips).
+
 =head1 AUTHOR
 
 Ruslan Zakirov E<lt>ruz@bestpractical.comE<gt>
 
 =head1 COPYRIGHT
 
-This extension is Copyright (C) 2007-2008 Best Practical Solutions, LLC.
+This extension is Copyright (C) 2007-2009 Best Practical Solutions, LLC.
 
 It is freely redistributable under the terms of version 2 of the GNU GPL.
 
