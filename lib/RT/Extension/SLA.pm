@@ -4,7 +4,7 @@ use warnings;
 
 package RT::Extension::SLA;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 =head1 NAME
 
@@ -13,14 +13,6 @@ RT::Extension::SLA - Service Level Agreements for RT
 =head1 DESCRIPTION
 
 RT extension to implement automated due dates using service levels.
-
-=head1 UPGRADING
-
-On upgrade you shouldn't run 'make initdb'.
-
-If you were using 0.02 or older version of this extension with
-RT 3.8.1 then you have to uninstall that manually. List of files
-you can find in the MANIFEST.
 
 =head1 INSTALL
 
@@ -53,7 +45,7 @@ There is no WebUI in the current version. Almost everything is
 controlled in the RT's config using option C<%RT::ServiceAgreements>
 and C<%RT::ServiceBusinessHours>. For example:
 
-    Set( %ServiceAgreements,
+    %RT::ServiceAgreements = (
         Default => '4h',
         QueueDefault => {
             'Incident' => '2h',
@@ -256,7 +248,7 @@ of requests that came into the system during the last night.
 In the config you can set one or more work schedules. Use the following
 format:
 
-    Set( %ServiceBusinessHours,
+    %RT::ServiceBusinessHours = (
         'Default' => {
             ... description ...
         },
@@ -282,7 +274,7 @@ hours.
 
 then %RT::ServiceBusinessHours should have the corresponding definition:
 
-    Set( %ServiceBusinessHours,
+    %RT::ServiceBusinessHours = (
         'work just in Monday' => {
             1 => { Name => 'Monday', Start => '9:00', End => '18:00' },
         },
@@ -294,14 +286,14 @@ Default Business Hours setting is in $RT::ServiceBusinessHours{'Default'}.
 
 In the config you can set per queue defaults, using:
 
-    Set( %ServiceAgreements,
+    %RT::ServiceAgreements = (
         Default => 'global default level of service',
         QueueDefault => {
             'queue name' => 'default value for this queue',
             ...
         },
         ...
-    );
+    };
 
 =head2 Access control
 
@@ -452,16 +444,16 @@ sub GetDefaultServiceLevel {
 =head2 Classes
 
 Actions are subclasses of L<RT::Action::SLA> class that is subclass of
-L<RT::Extension::SLA> and L<RT::Action::Generic> classes.
+L<RT::Extension::SLA> and L<RT::Action> classes.
 
 Conditions are subclasses of L<RT::Condition::SLA> class that is subclass of
-L<RT::Extension::SLA> and L<RT::Condition::Generic> classes.
+L<RT::Extension::SLA> and L<RT::Condition> classes.
 
 L<RT::Extension::SLA> is a base class for all classes in the extension,
 it provides access to config, generates L<Business::Hours> objects, and
 other things useful for whole extension. As this class is the base for
 all actions and conditions then we MUST avoid adding methods which overload
-methods in 'RT::{Condition,Action}::Generic' RT's modules.
+methods in 'RT::{Condition,Action}' RT's modules.
 
 =head1 NOTES
 
