@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.68.
+signed via the Module::Signature module, version 0.73.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -14,30 +14,30 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 8e179fe8b895350558abe2f74fafd0b9a7be2032 Changes
+SHA1 81e495770d70bc25f54fa9d72b80ae552ea0c1c5 Changes
 SHA1 4ebcbe1fac26f9eddedf6f93b53808726b4e8455 MANIFEST
 SHA1 1e592091e788f02fa5f4ac062ef74a7f254fffdf MANIFEST.SKIP
-SHA1 ed5bf4d0ba7ff1e288bc9043e92dffa8f77d9abb META.yml
+SHA1 3a36ff6504e5e50703872b6c12012618516af3c1 META.yml
 SHA1 4c0ea8c7be1c6cf449d0059842d9de619640068c Makefile.PL
-SHA1 eabb57bfbb7174bb46fe9ac601e3dd69d792c4e7 README
+SHA1 0ae66662cacd69e81a347045e29d445d2128a0d4 README
 SHA1 131ea7d0cfd4ec0420d078d9fcdce69f5ef7adb1 etc/initialdata
 SHA1 f6320ad738457bc452e3022e9a002320a0544c19 etc/upgrade/0.06/content
-SHA1 06c410f05488c1612ed66b06d3a86b2580581e4a inc/Module/AutoInstall.pm
-SHA1 8a924add836b60fb23b25c8506d45945e02f42f4 inc/Module/Install.pm
-SHA1 61ab1dd37e33ddbe155907ce51df8a3e56ac8bbf inc/Module/Install/AutoInstall.pm
-SHA1 2d0fad3bf255f8c1e7e1e34eafccc4f595603ddc inc/Module/Install/Base.pm
-SHA1 f0e01fff7d73cd145fbf22331579918d4628ddb0 inc/Module/Install/Can.pm
-SHA1 7328966e4fda0c8451a6d3850704da0b84ac1540 inc/Module/Install/Fetch.pm
-SHA1 66d3d335a03492583a3be121a7d888f63f08412c inc/Module/Install/Include.pm
-SHA1 b62ca5e2d58fa66766ccf4d64574f9e1a2250b34 inc/Module/Install/Makefile.pm
-SHA1 1aa925be410bb3bfcd84a16985921f66073cc1d2 inc/Module/Install/Metadata.pm
-SHA1 086821cf681da29d7a7e94e8a6fe6cce7e14f00f inc/Module/Install/RTx.pm
-SHA1 449e998bb26b566ce352948ae08906f3448ebcba inc/Module/Install/RTx/Factory.pm
-SHA1 a3cff7ab08b95ee312b7e9381eb72f42e309c842 inc/Module/Install/ReadmeFromPod.pm
+SHA1 1bc51475bf9453bc214ab0a02162df1a506cff77 inc/Module/AutoInstall.pm
+SHA1 dc13ce0dbb488a5de81c3f6519ee31acda17397a inc/Module/Install.pm
+SHA1 43aed6ac7d779deb47cc5cab2a5ef2f040dcf8f7 inc/Module/Install/AutoInstall.pm
+SHA1 91c20cbda8ca41b4e8f9e0390faff635c2ebe839 inc/Module/Install/Base.pm
+SHA1 eaf50ccbacecb797f0527deb0221c8264f6c8bd8 inc/Module/Install/Can.pm
+SHA1 363c8931cc183444907684b71d6a379e4fc8edcb inc/Module/Install/Fetch.pm
+SHA1 0c70de66cdd063352766d49db176e5f710f75fe7 inc/Module/Install/Include.pm
+SHA1 26ae1c0f5f352037b560414f216d7e3ac682f936 inc/Module/Install/Makefile.pm
+SHA1 ff97eb025b44c343d026c2a56a73d50c65319e95 inc/Module/Install/Metadata.pm
+SHA1 b3f22a7e59245b7ad864e6d33b95567580f8a225 inc/Module/Install/RTx.pm
+SHA1 293967c09b20031d14fbe96d51a68b6e003a89c3 inc/Module/Install/RTx/Factory.pm
+SHA1 79f5b4199f622e8b05aac266b0c39f6a85bb303f inc/Module/Install/ReadmeFromPod.pm
 SHA1 13c903897bad7f0fdd7871a4a0182ff62dfbefd5 inc/Module/Install/Substitute.pm
-SHA1 e4196994fa75e98bdfa2be0bdeeffef66de88171 inc/Module/Install/Win32.pm
-SHA1 c3a6d0d5b84feb3280622e9599e86247d58b0d18 inc/Module/Install/WriteAll.pm
-SHA1 b20880eb50c81ba69f25ed54e84e10e56ae91217 lib/RT/Action/SLA.pm
+SHA1 4c5ce519d404e242418f51dfe761287469e18e3a inc/Module/Install/Win32.pm
+SHA1 47a52cf8719a283c0efa2edab0088b5d67e0f23a inc/Module/Install/WriteAll.pm
+SHA1 18f455e9dac7cdaf78cd184d37c6bc32e9137fd8 lib/RT/Action/SLA.pm
 SHA1 cfc9adf9e06fd99b38fced943d9409daad5758c7 lib/RT/Action/SLA_SetDefault.pm
 SHA1 1ab72d0f515762c7e749ac7d3863817d88ed73db lib/RT/Action/SLA_SetDue.pm
 SHA1 c0051aef1b0b9e80eb40137cb7f1d441caa07c1d lib/RT/Action/SLA_SetStarts.pm
@@ -45,20 +45,20 @@ SHA1 8df5ec2bd4e63c2890e407146095badd5dfba170 lib/RT/Condition/SLA.pm
 SHA1 68b23f4a3c9fdbc703b968fa48977aa2b61ccefc lib/RT/Condition/SLA_RequireDefault.pm
 SHA1 4eb8378131e4b42bd9a40c2a01edac80740e7f8f lib/RT/Condition/SLA_RequireDueSet.pm
 SHA1 d316cbbb051efd45f4eac41b37cb77fc770bb55b lib/RT/Condition/SLA_RequireStartsSet.pm
-SHA1 cf356b9a20082ee87393d20b867726f64c81e8bd lib/RT/Extension/SLA.pm
+SHA1 879d043f3baac571c5dc1ff953772bcf0d6a2fc0 lib/RT/Extension/SLA.pm
 SHA1 7274c5b13937d46ff98cc21926fb90a23082a381 lib/RT/Extension/SLA/Test.pm.in
 SHA1 5512bb9a5bdcdaa87a62d107fae9c5fda50f00fa lib/RT/Queue_SLA.pm
 SHA1 672bc86ac03bbf71ad9eb2ddf581d06197bcd141 t/basics.t
 SHA1 8aa1771ade17de869ef975961b4564f7b6af55c2 t/business_hours.t
 SHA1 fe436cd302de8ab9403836384be0815265b9eec9 t/due.t
-SHA1 c8c4911d5fbc97b8fa58f6e1c3f0ae318e87f69f t/ignore-on-statuses.t
+SHA1 bed501545c0655038f4cb50c5e51dc9fa4902a97 t/ignore-on-statuses.t
 SHA1 4455758d2b6b85d4c581e2143ae8aed5fe2d21d6 t/queue.t
 SHA1 8246fd19c04d3eb3d8e5a66303c951030e046ab6 t/starts.t
 SHA1 f7d38586091a7b95b1286d9f7680b86a06448f92 t/timezone.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iD8DBQFP7iw6Hdv9ZfNcOAcRAtdfAJ4m/60jBjaVZfRbItKTTmhW8ABkEQCbBpWX
-t/fR64DEWpd4yLpmJ1p1qFY=
-=A9HW
+iEYEARECAAYFAlOYwIMACgkQMflWJZZAbqAXiACcCx65KK8xUflsRCscKBk1l1Gt
+ahAAoIU4mufqsNY0oBGWRfora88r3Jbf
+=fArf
 -----END PGP SIGNATURE-----
