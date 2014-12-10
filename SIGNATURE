@@ -14,12 +14,12 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 9e738b117ff4c2664b42d5dae70a1e85dd4a9afa Changes
+SHA1 37cc2a59352d9c01c423a0fe1c07764fc94e37fe Changes
 SHA1 c9708dd7ad2dffd071677016495e711ce363026f MANIFEST
 SHA1 1e592091e788f02fa5f4ac062ef74a7f254fffdf MANIFEST.SKIP
-SHA1 85bc89253f8cfc91f908475a16adb227903891db META.yml
+SHA1 facaa631e0495482dbe981500721a0512d92398a META.yml
 SHA1 bd1b1ef254b5aa7a05eb39b92f31e6dce05bd185 Makefile.PL
-SHA1 0718080365fdd2a1c4c2cdb8eaaf16d7a300e4bc README
+SHA1 fd87fee9d814b3c22beaac3e138683bae8d73d6e README
 SHA1 131ea7d0cfd4ec0420d078d9fcdce69f5ef7adb1 etc/initialdata
 SHA1 f6320ad738457bc452e3022e9a002320a0544c19 etc/upgrade/0.06/content
 SHA1 248dabb0dbdd603ecf7374c69e9a51073453e15d inc/Module/AutoInstall.pm
@@ -41,13 +41,13 @@ SHA1 4e09b598c2626e08cec2bed5e981492fa9e90967 inc/YAML/Tiny.pm
 SHA1 034d0f3a7401dae4be3eee279258181f51a4ad81 inc/unicore/Name.pm
 SHA1 18f455e9dac7cdaf78cd184d37c6bc32e9137fd8 lib/RT/Action/SLA.pm
 SHA1 cfc9adf9e06fd99b38fced943d9409daad5758c7 lib/RT/Action/SLA_SetDefault.pm
-SHA1 1ab72d0f515762c7e749ac7d3863817d88ed73db lib/RT/Action/SLA_SetDue.pm
+SHA1 413b51202943591f2a3eceb0f63f584f181c4bee lib/RT/Action/SLA_SetDue.pm
 SHA1 c0051aef1b0b9e80eb40137cb7f1d441caa07c1d lib/RT/Action/SLA_SetStarts.pm
 SHA1 8d6594df196b0afe53404d99c182b6efbb089c8a lib/RT/Condition/SLA.pm
 SHA1 68b23f4a3c9fdbc703b968fa48977aa2b61ccefc lib/RT/Condition/SLA_RequireDefault.pm
 SHA1 4eb8378131e4b42bd9a40c2a01edac80740e7f8f lib/RT/Condition/SLA_RequireDueSet.pm
 SHA1 d316cbbb051efd45f4eac41b37cb77fc770bb55b lib/RT/Condition/SLA_RequireStartsSet.pm
-SHA1 17bca26907012148040c13c18527dc4f2fbbef1d lib/RT/Extension/SLA.pm
+SHA1 53fe2bbc8bb83b970afc097a841083b72ad5da44 lib/RT/Extension/SLA.pm
 SHA1 7274c5b13937d46ff98cc21926fb90a23082a381 lib/RT/Extension/SLA/Test.pm.in
 SHA1 5512bb9a5bdcdaa87a62d107fae9c5fda50f00fa lib/RT/Queue_SLA.pm
 SHA1 672bc86ac03bbf71ad9eb2ddf581d06197bcd141 t/basics.t
@@ -60,7 +60,7 @@ SHA1 f7d38586091a7b95b1286d9f7680b86a06448f92 t/timezone.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1
 
-iEYEARECAAYFAlR959EACgkQMflWJZZAbqDjvACfR7THW7v23iFAEK5XHrvK9w3P
-TVMAn23YDPLF6nG2Q088UYFvc7nAzSGx
-=yt1z
+iEYEARECAAYFAlSIfhkACgkQMflWJZZAbqBh0ACglTr59K9WL7rmY2YUlBFtnKz7
+cXsAn0289y9W2Ff8Tuedx6AQcQSUPh+D
+=ekP9
 -----END PGP SIGNATURE-----
